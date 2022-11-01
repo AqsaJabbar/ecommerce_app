@@ -1,0 +1,40 @@
+<div class="form-group">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-4">
+        <div class="card">
+          <div class="card-body">
+<%= form_for @shop, url: path, method: method_type, local: true do |f| %>
+
+    <% if @shop.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@shop.errors.count, "error") %> prohibited
+        this shop from being saved:
+      </h2>
+      <ul>
+        <% @shop.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+      <div class="form-label"><%= f.label :name %></div>
+      <%= f.text_field :name %>
+    
+   <%= f.number_field :user_id,
+    value: current_user.id , type: :hidden%>
+  
+    <br />
+   <div class="btn btn-gray">
+      <%= f.submit %>
+      </div>
+    
+    
+  <% end %>
+   </div>  
+</div>
+</div>
+</div>
+</div>
+</div>

@@ -1,0 +1,34 @@
+<h1>Listing Subcategories</h1>
+<table class="table">
+<thead class="thead-light">
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Image</th>
+    
+  </tr>
+ </thead>
+ <tbody>
+  <% @sub_categories.each do |sub_category| %>
+    <tr>
+      <td><%= sub_category.name %></td>
+     <% if sub_category.image_url %>
+      <td><%= link_to image_tag(sub_category.image_url(:thumb))%></td>
+      <%end%>
+      <td><a href="/admin/sub_categories/<%= sub_category.id %>">Show </a></td>
+      <% if can? :manage,sub_category%>
+        <td><a href="/admin/sub_categories/<%= sub_category.id %>/edit">Edit </a></td>
+     <%
+=begin%>
+ <td> <a href="/admin/categories/<%= params[:category_id]%>/sub_categories/<%= sub_category.id %> ">Delete </a></td> 
+<%
+=end%>
+ <td><button class="btn btn-light"><%= link_to 'Destroy', admin_sub_category_path(sub_category.id), method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
+     </td> 
+<%end%>
+ 
+    </tr>
+    <%end%>
+ </tbody>
+ </thead>
+ </table>
+ 

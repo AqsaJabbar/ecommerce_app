@@ -1,0 +1,31 @@
+<h1>Listing categories</h1>
+  
+<table class="table">
+<thead class="thead-light">
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">image</th>
+    
+  </tr>
+ </thead>
+ <tbody>
+  <% @categories.each do |category| %>
+    <tr>
+      <td><%= category.name %></td>
+      <% if category.image_url %>
+      <td><%= link_to image_tag(category.image_url(:thumb))%></td>
+      <%end%>
+      <%if can? :manage,category%>
+      <td><button class="btn btn-light"><%= link_to 'Destroy', admin_category_path(category), method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
+     </td>
+     <td><button class="btn btn-light"><%= link_to 'Edit', edit_admin_category_path(category) %></button></td>
+     </td>
+     <td><button class="btn btn-light"><%= link_to 'Show', admin_category_path(category) %></button></td>
+     </td>
+     <%end%>
+    </tr>
+    <%end%>
+ </tbody>
+ </thead>
+ </table>
+ 

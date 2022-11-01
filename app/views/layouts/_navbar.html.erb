@@ -1,0 +1,64 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">ECommerce </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <% if user_signed_in? %> 
+        <li class="nav-item">
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" data-method="delete" href="/users/sign_out">LOGOUT</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/users/edit">EDIT</a>
+      </li>
+      
+       <%
+=begin%>
+ <li class="nav-item dropdown">
+           <a href="#" class="nav-link dropdown-toggle" 
+              data-bs-toggle="dropdown" 
+              role="button" aria-expanded="false">DROPDOWN</a>
+           <ul class="dropdown-menu">
+               <li class="nav-item ">
+                  <a class="dropdown-item">Bootstrap</a>
+               </li>
+           </ul>
+     </li> 
+<%
+=end%>
+     
+     
+      <%if !current_user.shop %>
+      <li class="nav-item">
+        <a class="nav-link" href="/shops/new">CREATE SHOP</a>
+      </li>
+     
+      <%end%>
+      </li>
+      <% else %>
+      <li class="nav-item">
+        <a class="nav-link" href="/users/sign_up">SIGN UP</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/users/sign_in">SIGN IN</a>
+      </li>
+      
+    <% end %>
+    </ul>
+      <%
+=begin%>
+ <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form> 
+<%
+=end%>
+    </div>
+  </div>
+</nav>

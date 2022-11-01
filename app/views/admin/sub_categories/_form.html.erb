@@ -1,0 +1,41 @@
+<div class="form-group">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-4">
+        <div class="card">
+          <div class="card-body">
+<%= form_for @sub_category, url: path, method: method_type do |f| %>
+
+    <% if @sub_category.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@sub_category.errors.count, "error") %> prohibited
+        this sub_category from being saved:
+      </h2>
+      <ul>
+        <% @sub_category.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+      <div class="form-label"><%= f.label :name %></div>
+      <%= f.text_field :name , class: 'col-lg-4 form-control'%><br />
+    <div class="form-label"><%= f.label :category %></div>
+      <%= f.collection_select(:category_id, Category.all, :id, :name, prompt: true) %>
+      <br />
+      <div class="form-label"><%= f.label :image %></div>
+ <%= f.file_field :image , class: 'col-lg-4 form-control'%>
+    <br />
+   <div class="btn btn-light">
+      <%= f.submit %>
+      </div>
+    
+    
+  <% end %>
+   </div>  
+</div>
+</div>
+</div>
+</div>
+</div>

@@ -1,0 +1,97 @@
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline">Ecommerce</span>
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">          
+                
+                <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-black" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+            Categories
+             </a>
+          <ul class="dropdown-menu dropdown-menu-light text-small shadow">
+            <li><a class="dropdown-item" href="/admin/categories">All Categories</a></li>
+            <%if can? :create, @categories%>
+            <li><a class="dropdown-item" href="/admin/categories/new">Add New Category</a></li>
+             <%end%>
+          </ul>
+        </li>
+           
+           
+                <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-black" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+            SubCategories
+             </a>
+            
+          <ul class="dropdown-menu dropdown-menu-light text-small shadow">
+            <li><a class="dropdown-item" href="/admin/sub_categories">All SubCategories</a></li>
+            <%if can? :create, @sub_categories%>
+            <li><a class="dropdown-item" href="/admin/sub_categories/new">Add New SubCategory</a></li>
+            <%end%>
+          </ul>
+        </li>
+        
+           
+          
+            <%if current_user.shop%>
+                <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-black" href="/admin/products" role="button" data-toggle="dropdown" aria-expanded="false">
+            Products
+             </a>
+          <ul class="dropdown-menu dropdown-menu-light text-small shadow">
+            <li><a class="dropdown-item" href="/admin/products">All Products</a></li>
+            <%if current_user.seller?%>
+            <li><a class="dropdown-item" href="/admin/products/new">Add New Product</a></li>
+         <%end%>
+          </ul>
+        </li>
+                    <%elsif !current_user.admin?%>
+                    <li>
+                    <a  href="/admin/shops/new" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                    <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">New Shop</span> </a>
+                            </a>
+                    </li>
+     
+                    <%end%>
+                    
+                     <li>
+                        <a href="/users/sign_out" data-method="delete"  class="nav-link px-0 align-middle ">
+                            <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">LogOut</span></a>
+                        
+                    </li>
+                    
+                </ul>
+                <hr>
+                <div class="dropdown pb-4">
+                    <a class="d-flex align-items-center text-black text-decoration-none dropdown-toggle" id="dropdownUser1" data-toggle="dropdown" aria-expanded="false">
+                        <span class="d-none d-sm-inline mx-1">Admin</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-light text-small shadow" aria-labelledby="dropdownUser1">
+                        <%
+=begin%>
+ <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li> 
+
+                        <li><a class="dropdown-item" href="/users/<%=current_user.id%>">Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <%
+=end%>
+                        <li><a class="dropdown-item" data-method="delete" href="/users/sign_out">Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col py-3">
+            <%= yield %>
+        </div>
+    </div>
+</div>
+<script>
+$(document).ready(function(){
+  $(".dropdown-toggle").dropdown();
+});
+</script>

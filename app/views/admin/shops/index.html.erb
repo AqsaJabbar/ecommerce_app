@@ -1,0 +1,23 @@
+<h1>Listing Shops</h1>
+<table class="table">
+<thead class="thead-light">
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">ID</th>
+  </tr>
+ </thead>
+ <tbody>
+    <tr>
+    <%if current_user.shop %>
+      <td><%= @shop.name %></td>
+      <td><%= @shop.user_id %></td>
+      <td><button class="btn btn-light"><%= link_to 'Destroy', admin_shop_path(@shop), method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
+     </td>
+     <td><button class="btn btn-light"><%= link_to 'Edit', edit_admin_shop_path(@shop) %></button></td>
+    
+     <td><button class="btn btn-light"><%= link_to 'NewProduct', new_admin_shop_product_path(@shop) %></button></td>
+     <%end%>
+    </tr>
+ </tbody>
+ </thead>
+ </table>

@@ -1,0 +1,38 @@
+<div class="form-group">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <div class="card">
+                <div class="card-body">
+<p>
+<strong>Title:</strong>
+  <%= @product.title %>
+</p>
+<p>
+<strong>Description:</strong>
+  <%= @product.description %>
+</p>
+<p>
+<strong>Price:</strong>
+  <%= @product.price %>
+</p>
+<p>
+<strong>Status:</strong>
+  <%= @product.status %>
+</p>
+<p>
+<strong>Category:</strong>
+  <%= @product.category_id %>
+</p>
+<% if @product.image_url %>
+      <%= link_to image_tag(@product.image_url())%>
+      <%end%>
+
+<%= link_to 'Edit', edit_admin_product_path(@product) %> |
+<%= link_to 'Back', admin_products_path %>
+</div>
+</div>
+    </div>
+    </div>
+    </div>
+    </div>
