@@ -1,0 +1,44 @@
+<%if current_user.seller?%><div class="text-white bg-dark"><center><h1><%= current_user.shop.name%> </h1></div></center><%end%>
+<div class="text-dark bg-light"><h1>Your All cart_items</h1></div>
+
+<table id="cart_item-table-id" class="table">
+<thead class="thead-light">
+<tr>
+<th scope="col">Name</th>
+<th scope="col">image</th>
+<th scope="col">Actions</th>
+</tr>
+</thead>
+
+<tbody>
+<% @cart_items.each do |cart_item| %>
+<tr>
+<td><%= cart_item.product.title %></td>
+<td><%= cart_item.product.price %></td>
+<%
+=begin%>
+ <% if cart_item.image_url %>
+<td><%= link_to image_tag(cart_item.image_url(:thumb))%></td>
+<%end%>
+<td>
+<%if can? :destroy,cart_item%>
+<button class="btn btn-light"><%= link_to 'Destroy', admin_cart_item_path(cart_item), method: :delete, data: { confirm: 'Are you sure?' } %></button>
+<%end%>
+<%if can? :edit,cart_item%>
+<button class="btn btn-light"><%= link_to 'Edit', edit_admin_cart_item_path(cart_item) %></button>
+<%end%>
+<button class="btn btn-light"><%= link_to 'Show', admin_cart_item_path(cart_item) %></button>
+</td> 
+</tr> 
+<%
+=end%>
+<%end%>
+</tbody>
+</table>
+
+<br>
+<script>
+$(document).ready( function () {
+$('#cart_item-table-id').DataTable();
+} );
+</script>

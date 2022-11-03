@@ -31,6 +31,8 @@
     <%= msg %>
     </div>
   </div>
+  <% end %>
+
   <%if user_signed_in?%>
 
  <%if current_user.admin? || current_user.seller?%>
@@ -44,9 +46,7 @@
    <%end%>
   
  <%end%>
-    
-  <% end %>
-  <%if !user_signed_in?%>
+      <%if !user_signed_in?%>
    <%= yield %>
    <%end%>
   </body>

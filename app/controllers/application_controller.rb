@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     if current_user.admin? || current_user.seller?
     admin_categories_path
     else 
-      shops_path
+      root_path
     end
   end
 end

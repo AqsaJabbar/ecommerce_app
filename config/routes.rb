@@ -4,12 +4,10 @@ Rails.application.routes.draw do
     sessions: "users/sessions",
     registrations: "users/registrations"
   }
-  resources :shops 
-  resources :products
- 
-  
-  
+  resources :cart_items
+  resources :carts
   namespace :admin do
+    resources :users, :only => [:index,:show]
   resources :categories do
     member do
       get :sub

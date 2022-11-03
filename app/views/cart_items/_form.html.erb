@@ -1,0 +1,54 @@
+
+       <div class="form-group">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-3">
+        <div class="card">
+                <div class="card-body">
+<%= form_with model:@cart_item, path: root_path, remote: true,local: false do |f| %>
+  <% if @cart_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cart_item.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+        <% @cart_item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ <div class="form-label"><%= f.label :quantity %></div>
+      <%= f.number_field :quantity,class: 'col-lg-4 form-control' %>
+       <br /> 
+       
+<%
+=begin%>
+ <div id="prod" value="<%=@product.title%>"></div> 
+<%
+=end%>
+<%= f.hidden_field :product_id,  :value => @product.id %>
+ <br /> 
+ 
+ <div class="btn btn-light" id="cartitem">
+    <%= f.submit "Add To Cart" %>
+  </div> 
+
+  
+<% end %>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+$("#cartitem").click(function(){
+  var prod_id=$("#cart_item_product_id").val();
+  var prod=$("#prod").val();
+    $.ajax({
+    type : 'POST',
+    url : `/cart_items`,
+   
+    });
+});
+</script>

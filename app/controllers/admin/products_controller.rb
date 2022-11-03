@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
   end
   def show
     @product=Product.friendly.find(params[:id])
+    @cart_item=CartItem.new
   end
   def new
     @product = Product.new
@@ -16,14 +17,13 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to admin_shop_product_path(@product)
+      redirect_to admin_product_path(@product)
   else
       render 'new'
   end
   end
 
   def update
-    
     @product=Product.friendly.find(params[:id])
     if @product.update(product_params)
       redirect_to admin_product_path(@product)

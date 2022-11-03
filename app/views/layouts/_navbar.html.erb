@@ -18,29 +18,17 @@
         <a class="nav-link" href="/users/edit">EDIT</a>
       </li>
       
-       <%
-=begin%>
+     
  <li class="nav-item dropdown">
            <a href="#" class="nav-link dropdown-toggle" 
-              data-bs-toggle="dropdown" 
-              role="button" aria-expanded="false">DROPDOWN</a>
+              data-toggle="dropdown" 
+              role="button" aria-expanded="false">Products</a>
            <ul class="dropdown-menu">
                <li class="nav-item ">
-                  <a class="dropdown-item">Bootstrap</a>
+                  <a href="/admin/products" class="dropdown-item">All Products</a>
                </li>
            </ul>
      </li> 
-<%
-=end%>
-     
-     
-      <%if !current_user.shop %>
-      <li class="nav-item">
-        <a class="nav-link" href="/shops/new">CREATE SHOP</a>
-      </li>
-     
-      <%end%>
-      </li>
       <% else %>
       <li class="nav-item">
         <a class="nav-link" href="/users/sign_up">SIGN UP</a>
@@ -50,7 +38,7 @@
       </li>
       
     <% end %>
-    </ul>
+    
       <%
 =begin%>
  <form class="d-flex">
@@ -59,6 +47,9 @@
       </form> 
 <%
 =end%>
+
+<li class="nav-item"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+    </ul>
     </div>
   </div>
 </nav>

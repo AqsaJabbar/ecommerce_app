@@ -27,9 +27,13 @@
 <% if @product.image_url %>
       <%= link_to image_tag(@product.image_url())%>
       <%end%>
-
+<%if can? :edit,@product%>
 <%= link_to 'Edit', edit_admin_product_path(@product) %> |
 <%= link_to 'Back', admin_products_path %>
+
+<%end%>
+<%= render '/cart_items/form'%>
+<div id="my_modal_content"></div>
 </div>
 </div>
     </div>

@@ -1,23 +1,30 @@
-<h1>Listing Shops</h1>
-<table class="table">
+<div class="text-dark bg-light"><h1>Listing Shops</h1><div>
+<table id="shop-table-id" class="table">
 <thead class="thead-light">
   <tr>
     <th scope="col">Name</th>
     <th scope="col">ID</th>
+    <th scope="col">Actions</th>
   </tr>
  </thead>
  <tbody>
-    <tr>
-    <%if current_user.shop %>
-      <td><%= @shop.name %></td>
-      <td><%= @shop.user_id %></td>
-      <td><button class="btn btn-light"><%= link_to 'Destroy', admin_shop_path(@shop), method: :delete, data: { confirm: 'Are you sure?' } %></button></td>
-     </td>
-     <td><button class="btn btn-light"><%= link_to 'Edit', edit_admin_shop_path(@shop) %></button></td>
     
-     <td><button class="btn btn-light"><%= link_to 'NewProduct', new_admin_shop_product_path(@shop) %></button></td>
+    <% @shops.each do |shop| %>
+    <tr>
+      <td><%= shop.name %></td>
+      <td><%= shop.user_id %></td>
+      <td>
+      <button class="btn btn-light"><%= link_to 'Destroy', admin_shop_path(shop), method: :delete, data: { confirm: 'Are you sure?' } %></button>
+      <button class="btn btn-light"><%= link_to 'Edit', edit_admin_shop_path(shop) %></button>
+      </td>
+      </tr> 
      <%end%>
-    </tr>
+    
  </tbody>
- </thead>
  </table>
+ <br>
+<script>
+ $(document).ready( function () {
+  $('#shop-table-id').DataTable();
+});
+ </script>
