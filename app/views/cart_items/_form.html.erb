@@ -21,6 +21,8 @@
        <br /> 
        
 <%= f.hidden_field :product_id,  :value => @product.id %>
+      
+<%= f.hidden_field :cart_id,  :value => @cart.id %>
  <br /> 
  
  <div class="btn btn-light" id="cartitem">
@@ -43,7 +45,7 @@
                 <div class="modal-body modal-body-centered">
                     Product added to cart successfully</div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light" ><%= link_to "View Cart",root_path%></button>
+                    <button type="button" class="btn btn-light" ><%= link_to "View Cart",cart_items_path%></button>
                     <button type="button" class="btn btn-light"><%= link_to "Continue Shopping",root_path%></button>
                 </div>
             </div>

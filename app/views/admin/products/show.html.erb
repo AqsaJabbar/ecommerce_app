@@ -32,8 +32,9 @@
 <%= link_to 'Back', admin_products_path %>
 
 <%end%>
+<%if user_signed_in?%>
 <%= render '/cart_items/form'%>
-<div id="my_modal_content"></div>
+<%end%>
 </div>
 </div>
     </div>
