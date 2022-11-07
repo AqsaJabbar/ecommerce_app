@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_04_094037) do
+ActiveRecord::Schema.define(version: 2022_11_07_120117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,18 @@ ActiveRecord::Schema.define(version: 2022_11_04_094037) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "cart_item_id", null: false
+    t.index ["cart_item_id"], name: "index_order_items_on_cart_item_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "title"
     t.string "price"
@@ -143,6 +155,7 @@ ActiveRecord::Schema.define(version: 2022_11_04_094037) do
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "products"
   add_foreign_key "carts", "users"
+  add_foreign_key "order_items", "cart_items"
   add_foreign_key "products", "sub_categories"
   add_foreign_key "users", "cities"
 end

@@ -7,6 +7,7 @@ class User < ApplicationRecord
          belongs_to :city
          has_many :cart_items, through: :cart
          has_one :cart
+         has_one :order
   enum role: [
     :seller,
     :buyer,

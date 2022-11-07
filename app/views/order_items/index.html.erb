@@ -1,0 +1,28 @@
+<div class="text-dark bg-light"><h1>Order</h1></div>
+
+<table id="order_item-table-id" class="table">
+<thead class="thead-light">
+<tr>
+<th scope="col">Name</th>
+<th scope="col">Description</th>
+<th scope="col">Price</th>
+</tr>
+</thead>
+
+<tbody>
+<% @order_items.each do |order_item| %>
+<tr>
+<td><%= order_item.product.title %></td>
+<td><%= order_item.product.description %></td>
+<td><%= order_item.product.price %></td>
+<%end%>
+</tbody>
+</table>
+<center><button class="btn btn-light"><%= link_to 'Place Order', cart_items_path%>
+     </button></center>
+<br>
+<script>
+$(document).ready( function () {
+$('#order_item-table-id').DataTable();
+} );
+</script>

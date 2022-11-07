@@ -8,6 +8,7 @@
     <th scope="col">Phone</th>
     <th scope="col">City</th>
     <th scope="col">Role</th>
+    <th scope="col">Action</th>
   </tr>
  </thead>
 
@@ -18,6 +19,8 @@
       <td><%= user.phone %></td>
       <td><%= user.city.name %></td>
       <td><%= user.role %></td>
+      <td> <button class="btn btn-light"><%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %>
+     </button>  </td>
      </tr>
      
     <%end%>

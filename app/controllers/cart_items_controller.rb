@@ -18,6 +18,11 @@ class CartItemsController < ApplicationController
       redirect_to admin_product_path(@product)
     end
   end
+  def destroy 
+    @cart_item = CartItem.find_by(params[:cart_id])
+    @cart_item.destroy
+    redirect_to cart_items_path
+  end
   private
     def cart_item_params
       params.require(:cart_item).permit(:product_id,:quantity,:cart_id)

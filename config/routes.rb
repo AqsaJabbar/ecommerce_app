@@ -6,8 +6,13 @@ Rails.application.routes.draw do
   }
   resources :cart_items
   resources :carts
+  resource :order_items do
+    member do
+      get :copy
+    end
+  end
   namespace :admin do
-    resources :users, :only => [:index,:show]
+    resources :users
   resources :categories do
     member do
       get :sub
