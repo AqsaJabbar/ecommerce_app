@@ -1,7 +1,7 @@
 class CartItemsController < ApplicationController
   def index
     @cart=current_user.cart
-     @cart_items=@cart.cart_items
+    @cart_items=@cart.cart_items
     end  
   def new
        @cart_item = CartItem.new
@@ -25,6 +25,6 @@ class CartItemsController < ApplicationController
   end
   private
     def cart_item_params
-      params.require(:cart_item).permit(:product_id,:quantity,:cart_id)
+      params.require(:cart_item).permit(:product_id,:quantity,:cart_id,:total)
     end
 end

@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   }
   resources :cart_items
   resources :carts
-  resource :order_items do
-    member do
+  resources :orders
+  resources :order_items do
+    collection do
       get :copy
     end
   end
