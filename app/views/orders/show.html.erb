@@ -1,0 +1,32 @@
+<div class="form-group">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <div class="card">
+                <div class="card-body">
+<p>
+<strong>Name:</strong>
+  <%= @order.name %>
+</p>
+<p>
+<strong>Email:</strong>
+  <%= @order.email %>
+</p>
+<p>
+<strong>Phone No:</strong>
+  <%= @order.phone %>
+</p>
+<p>
+<strong>Address:</strong>
+  <%= @order.address %>
+</p>
+<p>
+<%= link_to 'Edit Details', edit_order_path(@order) %>
+
+
+</div>
+</div>
+    </div>
+    </div>
+    </div>
+    </div>

@@ -1,7 +1,6 @@
 class CartItemsController < ApplicationController
   def index
-    @cart=current_user.cart
-    @cart_items=@cart.cart_items
+    @cart_items=current_user.cart.cart_items
     end  
   def new
        @cart_item = CartItem.new
@@ -9,7 +8,6 @@ class CartItemsController < ApplicationController
   def create 
     @cart_item = CartItem.new(cart_item_params)
     @product = Product.find_by(params[:product_id])
-    @cart=current_user.cart
     if @cart_item.save
       flash.alert = "Item added to cart."
       redirect_to admin_product_path(@product)

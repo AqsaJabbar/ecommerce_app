@@ -6,7 +6,6 @@ class ProductsController < ApplicationController
   def show
     @product=Product.friendly.find(params[:id])
     @cart_item=CartItem.new
-    @cart=current_user.cart
   end
   def new
     @product = Product.new

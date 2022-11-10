@@ -1,0 +1,32 @@
+<table id="cart_item-table-id" class="table">
+<thead class="thead-light">
+<tr>
+<th scope="col">Name</th>
+<th scope="col">Description</th>
+<th scope="col">Price</th>
+<th scope="col">Quantity</th>
+<th scope="col">total</th>
+<th scope="col">Action</th>
+</tr>
+</thead>
+
+<tbody>
+<% @cart_items.each do |cart_item| %>
+<tr>
+<td><%= cart_item.product.title %></td>
+<td><%= cart_item.product.description %></td>
+<td><%= number_to_currency(cart_item.product.price) %></td>
+<td><%= cart_item.quantity %></td>
+<% @t= cart_item.quantity * cart_item.product.price.to_i%>
+<%cart_item.update(total: @t )%>
+ <td><%= number_to_currency(cart_item.total) %></td> 
+ 
+<td> <button class="btn btn-light"><%= link_to 'Destroy', cart_item_path(cart_item), method: :delete, data: { confirm: 'Are you sure?' } %>
+     </button>  </td>
+<%end%>
+</tbody>
+</table>
+<strong> GrandTotal: </strong>
+<%@sum=0%>
+<% @g=@cart_items.each do |i| @sum = @sum + (i.total).to_i end%>
+<%=number_to_currency(@sum)%>

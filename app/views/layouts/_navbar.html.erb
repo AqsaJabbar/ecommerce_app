@@ -9,47 +9,32 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <% if user_signed_in? %> 
-        <li class="nav-item">
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" data-method="delete" href="/users/sign_out">LOGOUT</a>
-        </li>
-        <li class="nav-item">
-        <a class="nav-link" href="/users/edit">EDIT</a>
-      </li>
-      
-     
- <li class="nav-item dropdown">
+        
+      <li class="nav-item dropdown">
            <a href="#" class="nav-link dropdown-toggle" 
               data-toggle="dropdown" 
               role="button" aria-expanded="false">Products</a>
            <ul class="dropdown-menu">
                <li class="nav-item ">
-                  <a href="/admin/products" class="dropdown-item">All Products</a>
+                  <a href="/" class="dropdown-item">All Products</a>
                </li>
            </ul>
-     </li> 
-      <% else %>
-      <li class="nav-item">
-        <a class="nav-link" href="/users/sign_up">SIGN UP</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/users/sign_in">SIGN IN</a>
-      </li>
-      
-    <% end %>
+     </li>
+      <ul class="nav navbar-nav navbar-right">
+      <li><a href="/cart_items"><span class="glyphicon glyphicon-shopping-cart"></span> cart</a></li>
+      <li><a href="/users/edit"><span class="glyphicon glyphicon-user"></span> Edit Profile</a></li>
+      <li><a href="/users/sign_out" data-method="delete"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
     
-      <%
-=begin%>
- <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form> 
-<%
-=end%>
-
-<li class="nav-item"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+   </ul>
+      <% else %>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/users/sign_up"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="/users/sign_in"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li><a href="/cart_items"><span class="glyphicon glyphicon-shopping-cart"></span> cart</a></li>
+   </ul>
+    <%end%>
     </ul>
+
     </div>
   </div>
 </nav>

@@ -1,41 +1,5 @@
-<%if current_user.seller?%><div class="text-white bg-dark"><center><h1><%= current_user.shop.name%> </h1></div></center><%end%>
-<div class="text-dark bg-light"><h1>Cart</h1></div>
-
-<table id="cart_item-table-id" class="table">
-<thead class="thead-light">
-<tr>
-<th scope="col">Name</th>
-<th scope="col">Description</th>
-<th scope="col">Price</th>
-<th scope="col">Quantity</th>
-<th scope="col">Action</th>
-<th scope="col">total</th>
-<th scope="col">total2</th>
-</tr>
-</thead>
-
-<tbody>
-<% @cart_items.each do |cart_item| %>
-<tr>
-<td><%= cart_item.product.title %></td>
-<td><%= cart_item.product.description %></td>
-<td><%= cart_item.product.price %></td>
-<td><%= cart_item.quantity %></td>
-
- <td><%= cart_item.total=cart_item.total_price(cart_item.product,cart_item.quantity)%></td> 
- <% if cart_item.total.present?%>
- <td><%= cart_item.total %></td>
- <%end%>
-<td> <button class="btn btn-light"><%= link_to 'Destroy', cart_item_path(cart_item), method: :delete, data: { confirm: 'Are you sure?' } %>
-     </button>  </td>
-<%end%>
-</tbody>
-</table>
+<div class="text-dark bg-light"><h1>Your Cart</h1></div>
+<%= render 'cartitems'%>
 <center><button class="btn btn-light"><%= link_to 'Checkout', new_order_path%>
      </button></center>
 <br>
-<script>
-$(document).ready( function () {
-$('#cart_item-table-id').DataTable();
-} );
-</script>
