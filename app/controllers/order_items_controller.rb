@@ -1,10 +1,9 @@
 class OrderItemsController < ApplicationController
     def index
-        @cart_items=current_user.cart.cart_items
-        @order_items=@cart_items.all
+        @order_items=current_user.order.order_items
     end 
     private
     def order_item_params
-        params.require(:order_item).permit(:cart_item_id)
+        params.require(:order_item).permit(:product_id,:quantity,:total,:order_id)
       end
 end

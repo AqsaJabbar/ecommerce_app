@@ -5,7 +5,7 @@ class Product < ApplicationRecord
     mount_uploader :image, ImageUploader
     belongs_to :shop
     belongs_to :sub_category
-    has_many :cart_items
+    has_many :cart_items, dependent: :destroy
     enum status: [
         :available,
         :not_available,

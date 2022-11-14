@@ -1,4 +1,6 @@
-<table id="cart_item-table-id" class="table">
+<div class="row justify-content-center">
+    <div class="col-auto">
+<table id="cart_item-table-id" class="table table-bordered">
 <thead class="thead-light">
 <tr>
 <th scope="col">Name</th>
@@ -25,8 +27,13 @@
      </button>  </td>
 <%end%>
 </tbody>
+<tfoot>
+
+</tfoot>
 </table>
 <strong> GrandTotal: </strong>
 <%@sum=0%>
-<% @g=@cart_items.each do |i| @sum = @sum + (i.total).to_i end%>
+<% @cart_items.each do |i| @sum = @sum + (i.total).to_i end%>
 <%=number_to_currency(@sum)%>
+</div>
+</div>
