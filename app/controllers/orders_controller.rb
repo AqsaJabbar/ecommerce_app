@@ -1,4 +1,8 @@
 class OrdersController < ApplicationController
+  before_action :find_record, only: [:show, :edit,:update]
+  def index 
+    @orders=current_user.orders
+  end
     def new 
         @order=Order.new
         @cart_items=current_user.cart.cart_items
@@ -16,19 +20,18 @@ class OrdersController < ApplicationController
                 )
             end
             @order.update(total: @sum)
-          redirect_to order_items_path
+            current_user.cart.cart_items.destroy_all
+          redirect_to orders_path
         else
           render 'new'
         end
     end
-    def show 
-        @order=Order.friendly.find(params[:id])
+    def show  
+      @order_items=@order.order_items 
     end
     def edit
-        @order=Order.friendly.find(params[:id])
     end
     def update
-        @order=Order.friendly.find(params[:id])
         if @order.update(order_params)
           redirect_to order_path(@order)
         else
@@ -36,6 +39,9 @@ class OrdersController < ApplicationController
         end
       end
     private 
+    def find_record 
+      @order=Order.friendly.find(params[:id])
+    end
     def order_params
         params.require(:order).permit(:name,:phone,:email,:address,:user_id,:total)
       end

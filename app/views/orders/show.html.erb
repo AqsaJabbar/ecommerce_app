@@ -21,12 +21,44 @@
   <%= @order.address %>
 </p>
 <p>
-<%= link_to 'Edit Details', edit_order_path(@order) %>
-
-
 </div>
 </div>
     </div>
     </div>
     </div>
     </div>
+    <div class="row justify-content-center">
+    <div class="col-auto">
+<div class="text-dark bg-light"><h1>Order</h1></div>
+
+<table id="order_item-table-id" class="table">
+<thead class="thead-light">
+<tr>
+<th scope="col">Name</th>
+<th scope="col">Description</th>
+<th scope="col">Price</th>
+<th scope="col">Quantity</th>
+<th scope="col">Total</th>
+</tr>
+</thead>
+
+<tbody>
+<% @order_items.each do |order_item| %>
+<tr>
+<td><%= order_item.product.title %></td>
+<td><%= order_item.product.description %></td>
+<td><%= number_to_currency(order_item.product.price) %></td>
+<td><%= order_item.quantity %></td>
+<td><%= number_to_currency(order_item.total) %></td>
+<%end%>
+</tbody>
+</table>
+<strong>GrandTotal: </strong>
+<%= number_to_currency(@order.total)%>
+</div>
+</div>
+
+<center>
+     <%= link_to 'Back', orders_path %>
+</center>
+<br>
