@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-auto">
+<div class="text-dark bg-light"><h1>Order</h1></div>
+
+<table id="order_item-table-id" class="table">
+<thead class="thead-light">
+<tr>
+<th scope="col">Name</th>
+<th scope="col">Description</th>
+<th scope="col">Price</th>
+<th scope="col">Quantity</th>
+<th scope="col">Total</th>
+</tr>
+</thead>
+
+<tbody>
+<% @order_items.each do |order_item| %>
+<tr>
+<td><%= order_item.product.title %></td>
+<td><%= order_item.product.description %></td>
+<td><%= number_to_currency(order_item.product.price) %></td>
+<td><%= order_item.quantity %></td>
+<td><%= number_to_currency(order_item.total) %></td>
+<%end%>
+</tbody>
+</table>
+<strong>GrandTotal: </strong>
+<%= number_to_currency(current_user.order.total)%>
+</div>
+</div>
+
+<center><button class="btn btn-light"><%= link_to 'Shipping Details', order_path(current_user.order)%>
+     </button>
+     <button class="btn btn-light"><%= link_to 'Place Order', cart_items_path%>
+     </button>
+</center>
+<br>

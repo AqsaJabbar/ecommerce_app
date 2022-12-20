@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
     before_action :configure_permitted_parameters, if: :devise_controller?
-    before_action :authenticate_user!
+    # before_action :authenticate_user!
    
   protected
 
@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     if current_user.admin? || current_user.seller?
     admin_categories_path
     else 
-      shops_path
+      root_path
     end
   end
 end

@@ -1,11 +1,11 @@
 module  Admin
 class ShopsController < ApplicationController
     def index
-      @shop = current_user.shop
+      @shops = Shop.all
       end
       def show
-        @shop = current_user.shop
-        # @shop=Shop.find(params[:id])
+        # @shop = current_user.shop
+         @shop=Shop.friendly.find(params[:id])
       end
     def new
         @shop=Shop.new
@@ -17,7 +17,7 @@ class ShopsController < ApplicationController
       @shop = Shop.friendly.find(params[:id])
    
       if @shop.update(shop_params)
-        redirect_to(@shop)
+        redirect_to admin_shop_path(@shop)
       else
         render 'edit'
       end
@@ -33,7 +33,7 @@ class ShopsController < ApplicationController
     def destroy
         @shop = Shop.friendly.find(params[:id])
         @shop.destroy
-        redirect_to admin_shop_path(@shop)
+        redirect_to admin_shops_path
       end
     private 
     def shop_params

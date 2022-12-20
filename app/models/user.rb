@@ -5,6 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
          has_one :shop , dependent: :destroy
          belongs_to :city
+         has_many :cart_items, through: :cart
+         has_one :cart
+         has_many :orders , dependent: :destroy
   enum role: [
     :seller,
     :buyer,

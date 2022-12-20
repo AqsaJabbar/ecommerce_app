@@ -31,23 +31,25 @@
     <%= msg %>
     </div>
   </div>
+  <% end %>
+
   <%if user_signed_in?%>
 
- <%if current_user.admin? || current_user.seller?%>
-   <%= render "layouts/sidebar" %>
+    <%if current_user.admin? || current_user.seller?%>
+      <%= render "layouts/sidebar" %>
    
    <%else%>  
 
 
-   <%= render "layouts/navbar" %>
-   <%= yield %>
+       <%= render "layouts/navbar" %>
+      <%= yield %>
+      <%end%>
+  <%else%>
+      
+      <%= render "layouts/navbar" %>
+      <%= yield %>
    <%end%>
-  
- <%end%>
-    
-  <% end %>
-  <%if !user_signed_in?%>
-   <%= yield %>
-   <%end%>
+
+      
   </body>
 </html>

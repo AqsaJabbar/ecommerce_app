@@ -14,10 +14,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @cities=City.all
     @user = User.new(sign_up_params)
     if @user.save
-      redirect_to root_path
-  else
+      if @user.buyer?
+        @cart=Cart.create(user_id: @user.id)
+        redirect_to root_path
+      end
+    else
       render 'new'
-  end
+    end
   end
 
   # GET /resource/edit
@@ -52,6 +55,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, keys: [:firstname, :phone, :address, :role, :city_id])
+  end
+
+  def create_cart
+      if current_user.role=="buyer"
+        @cart=Cart.new(user_id: resource.id)
+        debugger
+        if @cart.save
+          flash.alert="cart created"
+          redirect_to root_path
+        else
+          flash.alert="sorry! cart not created"
+          redirect_to root_path
+        end
+      else
+        redirect_to root_path
+      end
   end
 
   # If you have extra params to permit, append them to the sanitizer.

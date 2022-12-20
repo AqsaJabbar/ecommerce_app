@@ -14,6 +14,7 @@ gem 'carrierwave', '~> 2.0'
 gem 'friendly_id', '~> 5.4.0'
 gem "letter_opener"
 gem 'cancancan'
+gem 'jquery-datatables-rails', '~> 3.4.0'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets

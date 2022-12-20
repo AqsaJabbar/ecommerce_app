@@ -1,0 +1,30 @@
+<div class="row justify-content-center">
+    <div class="col-auto">
+<table id="order-table-id" class="table table-bordered">
+<thead class="thead-light">
+<tr>
+<th scope="col">Name</th>
+<th scope="col">Email</th>
+<th scope="col">Total</th>
+<th scope="col"></th>
+</tr>
+</thead>
+
+<tbody>
+<% @orders.each do |order| %>
+<tr>
+<td><%= order.name %></td>
+<td><%= order.email %></td>
+<td><%= number_to_currency(order.total) %></td>
+<td><button><%= link_to "View Order Details", order_path(order)%></button></td>
+     
+<%end%>
+</tbody>
+<tfoot>
+
+</tfoot>
+</table>
+<button><%= link_to "back", cart_items_path%></button></td>
+     
+</div>
+</div>

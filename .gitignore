@@ -24,6 +24,7 @@
 
 /public/assets
 .byebug_history
+/db/schema.rb
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key

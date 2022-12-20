@@ -1,0 +1,72 @@
+       <div class="form-group">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-3">
+        <div class="card">
+                <div class="card-body">
+<%= form_with model:@cart_item, path: root_path, html: {id: 'my_form' } do |f| %>
+  <% if @cart_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cart_item.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+        <% @cart_item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ <div class="form-label"><%= f.label :quantity %></div>
+      <%= f.number_field :quantity,class: 'col-lg-4 form-control' %>
+       <br /> 
+       
+<%= f.hidden_field :product_id,  :value => @product.id %>
+      
+<%= f.hidden_field :cart_id,  :value => current_user.cart.id %>
+ <br /> 
+ 
+ <div class="btn btn-light" id="cartitem">
+    <%= f.submit "Add To Cart" %>
+  </div> 
+
+
+
+<div class="bs-example">
+    <!-- Modal HTML -->
+    <div id="myModal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                 <span class="glyphicon glyphicon-ok"></span>
+                    <i class="fa fa-check-circle"></i>
+                    <h5 class="modal-title">Success</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body modal-body-centered">
+                    Product added to cart successfully</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" ><%= link_to "View Cart",cart_items_path%></button>
+                    <button type="button" class="btn btn-light"><%= link_to "Continue Shopping",root_path%></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+<% end %>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+</body>
+<script>
+$("#my_form").on('submit', function(event){
+    event.preventDefault();  //Prevents form submission or the default event's action
+    $("#myModal").modal('show'); // Open the modal though javascript
+  
+});
+</script>
